@@ -1,0 +1,7 @@
+name = "biogenesis-x3-api"
+main = "worker.js"
+compatibility_date = "2026-11-18"
+
+[vars]
+# Replace with your actual GitHub Pages origin, without a path/trailing slash
+ALLOWED_ORIGIN = "https://YOUR_USERNAME.github.io"
