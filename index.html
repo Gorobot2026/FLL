@@ -206,6 +206,30 @@ footer{text-align:center;font-size:14px;color:var(--mute);opacity:.7;padding-bot
  #f .btns button{font-size:16px}
 }
 
+
+/* Separate student selectors: each member has independent Grade / Class */
+.person-panel{position:relative;margin-bottom:18px}
+.person-panel[data-person="1"]{border-color:#4864a7}
+.person-panel[data-person="2"]{border-color:#ac7c3e;background:linear-gradient(135deg,#192448,#151b35)}
+.person-tag{display:flex;align-items:center;gap:10px;margin:0 0 13px}
+.person-tag .person-icon{flex:none;width:37px;height:37px;display:grid;place-items:center;border-radius:11px;background:#3b66bd;color:#fff;font:800 20px 'Kanit'}
+.person-panel[data-person="2"] .person-icon{background:linear-gradient(135deg,#ffc650,#ff9034);color:#30200c}
+.person-tag strong{display:block;font:700 20px/1.25 'Kanit';color:#fff}
+.person-tag small{font-size:12px;color:#a9bfe9}
+.person-panel .result-bar{margin:14px 0 9px}
+.person-panel .result-bar strong{font-size:15px}
+.person-panel .student-grid{max-height:240px}
+.person-panel .student-grid .pick-nickname{font-size:18px}
+.person-panel .student-grid .pick-card{padding:10px}
+.person-panel .selector-note{margin-top:9px}
+.pick-card.other-picked{opacity:.48;cursor:not-allowed}
+.pick-card.other-picked .already-label{background:#24395f;color:#c8d8ff}
+@media(max-width:590px){
+ .person-tag strong{font-size:18px}
+ .person-panel .student-grid{max-height:235px}
+ .person-panel .pick-card{min-height:66px}
+}
+
 </style>
 </head>
 <body>
@@ -253,21 +277,32 @@ footer{text-align:center;font-size:14px;color:var(--mute);opacity:.7;padding-bot
   <div class="dialog-hero">
     <div class="eyebrow">STS SUMO • REGISTRATION</div>
     <h2 id="dh">เลือกนักเรียนเข้าร่วมแข่งขัน</h2>
-    <p>เลือก Grade และ Class จากนั้นติ๊กนักเรียน 2 คนที่เป็นคู่ทีมกัน</p>
+    <p>เลือก Grade และ Class แยกสำหรับนักเรียนแต่ละคน จากนั้นเลือกสมาชิกทีมให้ครบ 2 คน</p>
     <button class="x-close" type="button" id="closeDialog" aria-label="ปิดหน้าลงทะเบียน">×</button>
   </div>
   <form id="f" autocomplete="off">
-    <div class="step-head"><div class="step-num">1</div><div><div class="step-title">กรองรายชื่อนักเรียน</div><div class="step-desc">ข้อมูลดึงจากแท็บ AI_Name ของโรงเรียน</div></div></div>
-    <div class="selector-panel">
+    <div class="step-head"><div class="step-num">1</div><div><div class="step-title">เลือกสมาชิกทีมทีละคน</div><div class="step-desc">ข้อมูลดึงจากแท็บ AI_Name ของโรงเรียน • เลือกคนละ Grade / Class ได้</div></div></div>
+    <div class="selector-panel person-panel" data-person="1">
+      <div class="person-tag"><span class="person-icon">1</span><div><strong>นักเรียนคนที่ 1</strong><small>เลือก Grade, Class และติ๊กเลือกนักเรียนหนึ่งคน</small></div></div>
       <div class="filter-row">
-        <div><label for="gradeFilter">Grade (ระดับชั้น)</label><select id="gradeFilter"><option value="">เลือก Grade</option></select></div>
-        <div><label for="classFilter">Class (ห้องเรียน)</label><select id="classFilter" disabled><option value="">เลือก Class</option></select></div>
+        <div><label for="gradeFilter1">Grade (ระดับชั้น)</label><select id="gradeFilter1"><option value="">เลือก Grade</option></select></div>
+        <div><label for="classFilter1">Class (ห้องเรียน)</label><select id="classFilter1" disabled><option value="">เลือก Class</option></select></div>
       </div>
-      <div class="result-bar"><strong>รายชื่อที่สามารถเลือกได้</strong><span id="resultCount" class="result-count">เลือก Grade และ Class ก่อน</span></div>
-      <div class="student-grid" id="studentsList" aria-live="polite"><div class="empty-list" style="grid-column:1/-1">เลือก Grade และ Class เพื่อแสดงรายชื่อ</div></div>
-      <p class="selector-note">✓ ติ๊กเลือกได้สูงสุด 2 คน • สามารถเปลี่ยน Grade / Class เพื่อเลือกคู่ทีมต่างห้องได้</p>
+      <div class="result-bar"><strong>รายชื่อที่สามารถเลือกได้</strong><span id="resultCount1" class="result-count">เลือก Grade และ Class ก่อน</span></div>
+      <div class="student-grid" id="studentsList1" aria-live="polite"><div class="empty-list" style="grid-column:1/-1">เลือก Grade และ Class เพื่อแสดงรายชื่อนักเรียน</div></div>
+      <p class="selector-note">✓ เลือกนักเรียนได้ 1 คนสำหรับสมาชิกคนที่ 1 • ชื่อที่อีกคนเลือกแล้วจะไม่สามารถเลือกซ้ำได้</p>
     </div>
-    <div class="step-head"><div class="step-num">2</div><div><div class="step-title">ยืนยันรายชื่อคู่ทีม</div><div class="step-desc">ตรวจสอบนักเรียนทั้ง 2 คนก่อนกดลงทะเบียน</div></div></div>
+    <div class="selector-panel person-panel" data-person="2">
+      <div class="person-tag"><span class="person-icon">2</span><div><strong>นักเรียนคนที่ 2</strong><small>เลือก Grade, Class และติ๊กเลือกนักเรียนหนึ่งคน</small></div></div>
+      <div class="filter-row">
+        <div><label for="gradeFilter2">Grade (ระดับชั้น)</label><select id="gradeFilter2"><option value="">เลือก Grade</option></select></div>
+        <div><label for="classFilter2">Class (ห้องเรียน)</label><select id="classFilter2" disabled><option value="">เลือก Class</option></select></div>
+      </div>
+      <div class="result-bar"><strong>รายชื่อที่สามารถเลือกได้</strong><span id="resultCount2" class="result-count">เลือก Grade และ Class ก่อน</span></div>
+      <div class="student-grid" id="studentsList2" aria-live="polite"><div class="empty-list" style="grid-column:1/-1">เลือก Grade และ Class เพื่อแสดงรายชื่อนักเรียน</div></div>
+      <p class="selector-note">✓ เลือกนักเรียนได้ 1 คนสำหรับสมาชิกคนที่ 2 • ชื่อที่อีกคนเลือกแล้วจะไม่สามารถเลือกซ้ำได้</p>
+    </div>
+    <div class="step-head"><div class="step-num">2</div><div><div class="step-title">ยืนยันรายชื่อคู่ทีม</div><div class="step-desc">ตรวจสอบสมาชิกทั้ง 2 คนก่อนกดลงทะเบียน</div></div></div>
     <div class="picked-area">
       <div class="pick-head"><strong>สมาชิกในทีม</strong><span class="selection-badge" id="pickedCount">0 / 2 คน</span></div>
       <div class="selection-slots" id="selectedSlots"></div>
@@ -284,7 +319,7 @@ const MAX = 15;
 const COLORS = ["#2f7bff","#ff7a1a","#ff3da8","#ffc21f","#35c6ff","#2fd27a"];
 let teams = [];
 let students = [];
-let picked = [];
+let picked = [null, null];
 let submitting = false;
 const $ = id => document.getElementById(id);
 const esc = value => String(value ?? "").replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -354,28 +389,28 @@ async function loadRoster() {
   teams = data.teams || [];
   students = data.students || [];
   renderTeams();
-  // Remove registered/invalid picks if roster changed in the meantime.
-  picked = picked.filter(id => {
+  // Keep valid choices independently for student 1 and student 2.
+  picked = picked.map(id => {
     const student = studentById(id);
-    return student && student.available;
+    return student && student.available ? id : null;
   });
-  fillGrades();
-  renderStudents();
+  fillGrades(1);
+  fillGrades(2);
   renderPicked();
 }
-function fillGrades() {
-  const gradeFilter = $('gradeFilter');
+function fillGrades(person) {
+  const gradeFilter = $('gradeFilter' + person);
   const old = gradeFilter.value;
   const grades = [...new Set(students.map(s => s.grade))]
     .sort((a,b) => Number(a) - Number(b));
   gradeFilter.innerHTML = '<option value="">เลือก Grade</option>' +
     grades.map(g => `<option value="${esc(g)}">Grade ${esc(g)}</option>`).join('');
   gradeFilter.value = grades.includes(old) ? old : '';
-  fillClasses();
+  fillClasses(person);
 }
-function fillClasses() {
-  const g = $('gradeFilter').value;
-  const classFilter = $('classFilter');
+function fillClasses(person) {
+  const g = $('gradeFilter' + person).value;
+  const classFilter = $('classFilter' + person);
   const old = classFilter.value;
   const rooms = [...new Set(students.filter(s => s.grade === g).map(s => s.classroom))]
     .sort((a,b) => Number(a) - Number(b));
@@ -383,90 +418,106 @@ function fillClasses() {
   classFilter.innerHTML = '<option value="">เลือก Class</option>' +
     rooms.map(room => `<option value="${esc(room)}">Class ${esc(room)}</option>`).join('');
   classFilter.value = rooms.includes(old) ? old : '';
-  renderStudents();
+  renderStudents(person);
 }
-function renderStudents() {
-  const grade = $('gradeFilter').value;
-  const room = $('classFilter').value;
-  const target = $('studentsList');
+function renderStudents(person) {
+  const grade = $('gradeFilter' + person).value;
+  const room = $('classFilter' + person).value;
+  const target = $('studentsList' + person);
   if (!grade || !room) {
-    $('resultCount').textContent = 'เลือก Grade และ Class ก่อน';
+    $('resultCount' + person).textContent = 'เลือก Grade และ Class ก่อน';
     target.innerHTML = '<div class="empty-list" style="grid-column:1/-1">เลือก Grade และ Class เพื่อแสดงรายชื่อนักเรียน</div>';
     return;
   }
   const filtered = students.filter(s => s.grade === grade && s.classroom === room);
-  const countAvailable = filtered.filter(s => s.available).length;
-  $('resultCount').textContent = 'พบ ' + filtered.length + ' คน • เลือกได้ ' + countAvailable + ' คน';
+  const otherId = picked[person === 1 ? 1 : 0];
+  const countAvailable = filtered.filter(s => s.available && s.id !== otherId).length;
+  $('resultCount' + person).textContent = 'พบ ' + filtered.length + ' คน • เลือกได้ ' + countAvailable + ' คน';
   if (!filtered.length) {
     target.innerHTML = '<div class="empty-list" style="grid-column:1/-1">ไม่พบรายชื่อในห้องเรียนนี้</div>';
     return;
   }
   target.innerHTML = filtered.map(s => {
-    const checked = picked.includes(s.id);
-    return `<label class="pick-card ${checked ? 'checked' : ''} ${s.available ? '' : 'unavailable'}">
-      <input type="checkbox" data-student-id="${esc(s.id)}" ${checked ? 'checked' : ''} ${!s.available ? 'disabled' : ''} aria-label="เลือก ${esc(s.nickname)}" />
+    const checked = picked[person - 1] === s.id;
+    const otherPicked = s.id === otherId;
+    const disabled = !s.available || otherPicked;
+    return `<label class="pick-card ${checked ? 'checked' : ''} ${disabled ? 'unavailable' : ''} ${otherPicked ? 'other-picked' : ''}">
+      <input type="checkbox" data-student-id="${esc(s.id)}" data-person="${person}" ${checked ? 'checked' : ''} ${disabled ? 'disabled' : ''} aria-label="เลือก ${esc(s.nickname)} เป็นนักเรียนคนที่ ${person}" />
       <span class="pick-content"><span class="pick-nickname">${esc(s.nickname)}</span>
         <span class="pick-detail">${esc(s.displayName)}</span>
         <span class="pick-meta">Grade ${esc(s.grade)} / Class ${esc(s.classroom)}</span></span>
-      ${!s.available ? '<span class="already-label">สมัครแล้ว</span>' : ''}</label>`;
+      ${!s.available ? '<span class="already-label">สมัครแล้ว</span>' : otherPicked ? '<span class="already-label">อีกคนเลือกแล้ว</span>' : ''}</label>`;
   }).join('');
 }
 function renderPicked() {
+  const selectedCount = picked.filter(Boolean).length;
   const count = $('pickedCount');
-  count.textContent = picked.length + ' / 2 คน';
-  count.classList.toggle('completed', picked.length === 2);
+  count.textContent = selectedCount + ' / 2 คน';
+  count.classList.toggle('completed', selectedCount === 2);
   let html = '';
   for (let i=0; i<2; i++) {
     const s = studentById(picked[i]);
     if (s) html += `<div class="selected-card done">
       <div class="selected-number">${i+1}</div>
       <div class="selected-data"><b>${esc(s.nickname)}</b><small>Grade ${esc(s.grade)} / Class ${esc(s.classroom)}</small></div>
-      <button type="button" class="remove-pick" data-remove-id="${esc(s.id)}" aria-label="นำ ${esc(s.nickname)} ออกจากทีม">ลบ</button></div>`;
+      <button type="button" class="remove-pick" data-remove-person="${i+1}" aria-label="นำ ${esc(s.nickname)} ออกจากทีม">ลบ</button></div>`;
     else html += `<div class="selected-card"><div class="selected-number">${i+1}</div>
-      <div class="selected-data"><b>รอเลือกนักเรียน</b><small>เลือกจากรายชื่อด้านบน</small></div></div>`;
+      <div class="selected-data"><b>รอเลือกนักเรียนคนที่ ${i+1}</b><small>เลือกจากรายชื่อด้านบนในช่องคนที่ ${i+1}</small></div></div>`;
   }
   $('selectedSlots').innerHTML = html;
-  $('btn').disabled = submitting || picked.length !== 2;
-  $('btn').textContent = submitting ? 'กำลังบันทึก...' : picked.length === 2 ? 'ยืนยันลงทะเบียนทีม' : 'เลือกนักเรียนให้ครบ 2 คน';
+  $('btn').disabled = submitting || selectedCount !== 2;
+  $('btn').textContent = submitting ? 'กำลังบันทึก...' : selectedCount === 2 ? 'ยืนยันลงทะเบียนทีม' : 'เลือกนักเรียนให้ครบ 2 คน';
 }
-function toggleStudent(id, checked) {
+function toggleStudent(person, id, checked) {
   showError('');
-  const student = studentById(id);
-  if (!student || !student.available) {
-    showError('รายชื่อนี้ไม่สามารถลงทะเบียนได้ กรุณาลองโหลดหน้าเว็บใหม่');
-    renderStudents();
-    return;
-  }
-  if (checked && !picked.includes(id)) {
-    if (picked.length >= 2) {
-      showError('เลือกครบ 2 คนแล้ว หากต้องการเปลี่ยนให้ลบคนเดิมก่อน');
-      renderStudents();
-      return;
+  if (person !== 1 && person !== 2) return;
+  if (!checked) {
+    if (picked[person-1] === id) picked[person-1] = null;
+  } else {
+    const student = studentById(id);
+    if (!student || !student.available) {
+      showError('รายชื่อนี้ไม่สามารถลงทะเบียนได้ กรุณาลองโหลดหน้าเว็บใหม่');
+    } else if (picked[person === 1 ? 1 : 0] === id) {
+      showError('นักเรียนคนนี้ถูกเลือกเป็นสมาชิกอีกคนแล้ว กรุณาเลือกชื่ออื่น');
+    } else {
+      // Only one choice per panel; selecting a new name replaces the old choice.
+      picked[person-1] = id;
     }
-    picked.push(id);
-  } else if (!checked) picked = picked.filter(x => x !== id);
-  renderStudents();
+  }
+  renderStudents(1);
+  renderStudents(2);
   renderPicked();
 }
-
-$('gradeFilter').addEventListener('change', () => { fillClasses(); showError(''); });
-$('classFilter').addEventListener('change', () => { renderStudents(); showError(''); });
-$('studentsList').addEventListener('change', (e) => {
-  if (e.target.matches('input[data-student-id]')) toggleStudent(e.target.dataset.studentId, e.target.checked);
-});
+for (const person of [1,2]) {
+  $('gradeFilter' + person).addEventListener('change', () => {
+    fillClasses(person);
+    showError('');
+  });
+  $('classFilter' + person).addEventListener('change', () => {
+    renderStudents(person);
+    showError('');
+  });
+  $('studentsList' + person).addEventListener('change', (e) => {
+    if (e.target.matches('input[data-student-id]')) {
+      toggleStudent(person, e.target.dataset.studentId, e.target.checked);
+    }
+  });
+}
 $('selectedSlots').addEventListener('click', e => {
-  const button = e.target.closest('button[data-remove-id]');
-  if (button) toggleStudent(button.dataset.removeId, false);
+  const button = e.target.closest('button[data-remove-person]');
+  if (button) toggleStudent(Number(button.dataset.removePerson), picked[Number(button.dataset.removePerson)-1], false);
 });
 
 $('open').addEventListener('click', async () => {
-  picked = [];
+  picked = [null, null];
   students = [];
-  $('gradeFilter').innerHTML = '<option value="">กำลังโหลด...</option>';
-  $('classFilter').innerHTML = '<option value="">เลือก Class</option>';
-  $('classFilter').disabled = true;
-  $('resultCount').textContent = 'กำลังโหลดข้อมูล';
-  $('studentsList').innerHTML = '<div class="empty-list" style="grid-column:1/-1">กำลังโหลดรายชื่อนักเรียนจาก AI_Name...</div>';
+  for (const person of [1,2]) {
+    $('gradeFilter' + person).innerHTML = '<option value="">กำลังโหลด...</option>';
+    $('classFilter' + person).innerHTML = '<option value="">เลือก Class</option>';
+    $('classFilter' + person).disabled = true;
+    $('resultCount' + person).textContent = 'กำลังโหลดข้อมูล';
+    $('studentsList' + person).innerHTML = '<div class="empty-list" style="grid-column:1/-1">กำลังโหลดรายชื่อนักเรียนจาก AI_Name...</div>';
+  }
   renderPicked();
   showError('');
   $('dlg').showModal();
@@ -474,7 +525,9 @@ $('open').addEventListener('click', async () => {
     await loadRoster();
   } catch(e) {
     showError('ไม่สามารถโหลดรายชื่อนักเรียนได้: ' + e.message);
-    $('studentsList').innerHTML = '<div class="empty-list" style="grid-column:1/-1">ไม่สามารถโหลดข้อมูลได้ กรุณาตรวจสอบ Code.gs และการ Deploy</div>';
+    for (const person of [1,2]) {
+      $('studentsList' + person).innerHTML = '<div class="empty-list" style="grid-column:1/-1">ไม่สามารถโหลดข้อมูลได้ กรุณาตรวจสอบ Code.gs และการ Deploy</div>';
+    }
   }
 });
 function closeDialog() { if (!submitting) $('dlg').close(); }
@@ -485,7 +538,7 @@ $('dlg').addEventListener('cancel', e => { if (submitting) e.preventDefault(); }
 $('f').addEventListener('submit', async (e) => {
   e.preventDefault();
   if (submitting) return;
-  if (picked.length !== 2) { showError('กรุณาติ๊กนักเรียนให้ครบ 2 คน'); return; }
+  if (!picked[0] || !picked[1]) { showError('กรุณาติ๊กเลือกนักเรียนคนที่ 1 และคนที่ 2 ให้ครบ'); return; }
   submitting = true;
   renderPicked();
   showError('');
@@ -498,7 +551,7 @@ $('f').addEventListener('submit', async (e) => {
     teams = data.teams || [];
     renderTeams();
     $('dlg').close();
-    picked = [];
+    picked = [null, null];
     toast('🎉 สมัครทีมสำเร็จ! ทีมหมายเลข ' + String(data.teamNo).padStart(2,'0'));
   } catch(e) {
     showError(e.message);
