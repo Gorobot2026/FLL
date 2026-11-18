@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#073536">
+  <title>BIOGENESIS X3 | IoT Control Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar" id="sidebar">
+    <div class="logo"><div class="logo-icon">✳</div><div><b>BIOGENESIS X3</b><small>Climate &amp; Conservation Lab</small></div></div>
+    <div class="menu-label">BIOGLOW RESEARCH SYSTEM</div>
+    <nav aria-label="เมนูหลัก">
+      <button class="nav active" data-page="overview"><span>▦</span> ภาพรวมระบบ</button>
+      <button class="nav" data-page="soil"><span>◈</span> เครื่องผสมดิน</button>
+      <button class="nav" data-page="capsule"><span>◉</span> แคปซูลเมล็ดพันธุ์</button>
+      <button class="nav" data-page="greenhouse"><span>♧</span> โรงเรือน 3 ชั้น</button>
+      <button class="nav" data-page="experiments"><span>▤</span> แผนและผลการทดลอง</button>
+      <button class="nav" data-page="insights"><span>↗</span> วิเคราะห์ข้อมูล</button>
+      <button class="nav" data-page="schedule"><span>◷</span> ตั้งเวลาทำงาน</button>
+      <button class="nav" data-page="developer"><span>⌘</span> ข้อมูลสำหรับเชื่อมต่อ</button>
+    </nav>
+    <div class="sidebar-bottom"><span class="dot orange"></span> <b>INTERACTIVE PROTOTYPE</b><small>ข้อมูลตัวอย่าง — ยังไม่เชื่อม Google Sheets และ ESP32</small></div>
+  </aside>
+  <main>
+    <header class="topbar">
+      <button class="menu-toggle" id="menuToggle" aria-label="เปิดเมนู">☰</button>
+      <div><div class="crumb">SMART CONTROL PLATFORM / <span id="pageCrumb">OVERVIEW</span></div><h1 id="pageTitle">ภาพรวมระบบอัจฉริยะ</h1></div>
+      <div class="header-right"><span class="chip orange"><span class="dot orange"></span> SIMULATION ONLY</span><span class="clock" id="clock">--:--</span></div>
+    </header>
+    <div class="content">
+      <div class="safety-note"><b>ต้นแบบ UI/UX สำหรับ FLL:</b> ข้อมูลอุณหภูมิ เซนเซอร์ และคำสั่งทั้งหมดในเว็บนี้เป็น <b>ข้อมูลจำลอง</b> เก็บการแก้ไขไว้ในเบราว์เซอร์เครื่องนี้เท่านั้น <b>ยังไม่เชื่อม Google Sheets / ESP32 และไม่ควบคุมฮาร์ดแวร์จริง</b></div>
+
+      <section class="page show" id="page-overview">
+        <div class="hero">
+          <div class="hero-copy">
+            <div class="eyebrow">FLL BIOGLOW • INNOVATION PROJECT • DESIGN PROTOTYPE</div>
+            <h2>สร้างสภาพแวดล้อมที่เหมาะกับ<br><em>พืชทุกถิ่นกำเนิด</em></h2>
+            <p>BIOGENESIS X3 ผสานสูตรวัสดุปลูก แคปซูลเมล็ดพันธุ์ และโรงเรือนควบคุมภูมิอากาศอิสระ 3 ห้อง เพื่อศึกษาการงอก การเจริญเติบโต และพัฒนาแนวทางเพาะขยายพันธุ์พืชสำหรับการอนุรักษ์ความหลากหลายทางชีวภาพ</p>
+            <div class="button-row"><button class="hero-btn" data-go="greenhouse">ดูโรงเรือน 3 โซน →</button><button class="hero-ghost" data-go="experiments">เปิดงานวิจัย</button></div>
+          </div>
+          <div class="hero-visual" aria-label="แผนภาพโรงเรือนสามห้อง">
+            <div class="mini-lab-head">ADAPTIVE CLIMATE SYSTEM</div>
+            <div class="visual-room cool"><span>❄ COOL ZONE</span><strong>24–26°C</strong><div>🌱 🌱 🌱</div></div>
+            <div class="visual-room mild"><span>◈ MILD ZONE</span><strong>27–29°C</strong><div>🌿 🌿 🌿</div></div>
+            <div class="visual-room warm"><span>☀ WARM ZONE</span><strong>30–32°C</strong><div>🌾 🌿 🌾</div></div>
+          </div>
+        </div>
+        <div class="heading-row"><div><h2>ศูนย์ควบคุมและวิจัย</h2><p>ภาพรวม 5 โมดูลของโครงการ — แยกความสามารถที่สร้างจริงกับแบบจำลอง</p></div><span class="chip orange">● UI DEMO / NO HARDWARE</span></div>
+        <div class="module-track">
+          <div class="module-tile"><b>01</b><span>โมดูล 3D</span><strong>Biochar Concept</strong><small>ต้นแบบแสดงกระบวนการผลิตและพลังงาน</small></div>
+          <div class="module-arrow">→</div>
+          <button class="module-tile linked" data-go="soil"><b>02</b><span>ต้นแบบเครื่องจริง</span><strong>Soil Mixer</strong><small>กำหนดสัดส่วนและชั่งน้ำหนัก</small></button>
+          <div class="module-arrow">→</div>
+          <button class="module-tile linked" data-go="capsule"><b>03</b><span>ต้นแบบเครื่องจริง</span><strong>Seed Capsule</strong><small>สร้างแคปซูลทดลองจากสูตรวัสดุปลูก</small></button>
+          <div class="module-arrow">→</div>
+          <button class="module-tile linked" data-go="greenhouse"><b>04</b><span>ต้นแบบเครื่องจริง</span><strong>3 Climate Zones</strong><small>ควบคุมอุณหภูมิแยกแต่ละห้อง</small></button>
+          <div class="module-arrow">→</div>
+          <button class="module-tile linked" data-go="experiments"><b>05</b><span>เว็บและข้อมูล</span><strong>Research Dashboard</strong><small>บันทึกผลและเปรียบเทียบการทดลอง</small></button>
+        </div>
+        <div class="stats">
+          <div class="stat"><div class="stat-icon teal">◈</div><span>สูตรผสมดินที่บันทึก</span><strong id="recipeCount">0</strong><small>สูตรพร้อมใช้งาน</small></div>
+          <div class="stat"><div class="stat-icon blue">♧</div><span>จำนวนชั้นโรงเรือน</span><strong>3</strong><small>ควบคุมแยกกันได้</small></div>
+          <div class="stat"><div class="stat-icon amber">▤</div><span>ชุดการทดลอง</span><strong id="experimentCount">0</strong><small>ข้อมูลที่ผู้ใช้บันทึก</small></div>
+          <div class="stat"><div class="stat-icon coral">⌁</div><span>การเชื่อมต่ออุปกรณ์</span><strong class="status-large">OFFLINE</strong><small>ยังไม่ได้ตั้งค่า Backend</small></div>
+        </div>
+        <div class="two-col">
+          <article class="panel"><div class="panel-top"><h3>เครื่องผสมดินอัจฉริยะ</h3><span class="pill">02 · SOIL MIXER</span></div><p>เลือกสูตร กำหนดน้ำหนักวัตถุดิบ 4 ช่อง และติดตามขั้นตอนผสมเพื่อให้ทดลองซ้ำได้</p><div class="progress-card"><div class="mini-label">สถานะงานล่าสุด</div><h3 id="overviewSoilStatus">พร้อมรับคำสั่ง</h3><div class="bar"><i id="overviewSoilBar" style="width:0%"></i></div><span id="overviewSoilPercent">0% (จำลอง)</span></div><button class="primary" data-go="soil">เปิดเครื่องผสมดิน →</button></article>
+          <article class="panel"><div class="panel-top"><h3>โรงเรือนอัจฉริยะ 3 ชั้น</h3><span class="pill">04 · CLIMATE ZONES</span></div><p>ตั้งภูมิอากาศที่ต้องการแยกแต่ละชั้น และตรวจสอบค่าเซนเซอร์จำลอง</p><div class="mini-floor-list" id="overviewFloors"></div><button class="primary" data-go="greenhouse">เปิดแดชบอร์ดโรงเรือน →</button></article>
+        </div>
+        <article class="panel"><div class="panel-top"><h3>ประวัติคำสั่งจำลอง</h3><button class="textbtn" id="clearLog">ล้างประวัติ</button></div><div class="log" id="activityLog"></div></article>
+      </section>
+
+      <section class="page" id="page-soil">
+        <div class="heading-row"><div><h2>เลือกสูตรวัสดุปลูก</h2><p>กำหนดปริมาณวัตถุดิบ 4 ช่องเก็บด้วยหน่วยกรัม (g)</p></div><button class="secondary" id="newRecipe">+ เพิ่มสูตรใหม่</button></div>
+        <div class="recipe-grid" id="recipeCards"></div>
+        <div class="two-col narrow-left">
+          <article class="panel"><div class="panel-top"><h3>คำสั่งผสมดิน</h3><span class="pill">LOAD CELL REQUIRED</span></div>
+            <label class="field-label" for="recipeSelect">เลือกสูตร</label><select id="recipeSelect"></select>
+            <label class="field-label" for="batchMultiplier">จำนวนชุดที่ต้องการ</label><input type="number" min="1" max="20" id="batchMultiplier" value="1">
+            <div class="line-items" id="recipeWeights"></div><div class="total-line"><span>น้ำหนักรวม</span><strong id="totalWeight">0 g</strong></div>
+            <div class="button-row"><button class="primary" id="startMix">▶ เริ่มผสม (จำลอง)</button><button class="danger-outline" id="stopMix">■ หยุด</button></div>
+            <p class="help">เครื่องจริงต้องตรวจสอบน้ำหนักจาก Load Cell ก่อนปิด Servo และเริ่มมอเตอร์ผสม</p>
+          </article>
+          <article class="panel"><div class="panel-top"><h3>สถานะการทำงาน</h3><span class="pill" id="mixStatusPill">IDLE</span></div>
+            <div class="mixer-visual"><div class="bin" id="bin1">ช่อง 1</div><div class="bin" id="bin2">ช่อง 2</div><div class="bin" id="bin3">ช่อง 3</div><div class="bin" id="bin4">ช่อง 4</div></div>
+            <div class="bar big"><i id="mixBar" style="width:0%"></i></div><div class="status-row"><strong id="mixStatus">พร้อมรับคำสั่ง</strong><span id="mixPercent">0%</span></div>
+            <div class="steps"><span id="step1">1. ชั่งวัตถุดิบ</span><span id="step2">2. ผสม</span><span id="step3">3. ปล่อยวัสดุ</span><span id="step4">4. เสร็จสิ้น</span></div>
+          </article>
+        </div>
+      </section>
+
+
+      <section class="page" id="page-capsule">
+        <div class="heading-row"><div><div class="section-overline">MODULE 03 / SMART SEED CAPSULE</div><h2>เครื่องสร้างแคปซูลเมล็ดพันธุ์</h2><p>เชื่อมสูตรวัสดุปลูกกับรูปแบบแคปซูล เพื่อทดสอบผลต่ออัตราการงอกของเมล็ด</p></div><span class="chip orange">กดทดลองได้ / ไม่ขับเคลื่อนเครื่องจริง</span></div>
+        <div class="two-col narrow-left">
+          <article class="panel">
+            <div class="panel-top"><h3>ออกแบบ Batch แคปซูล</h3><span class="pill">CAPSULE BUILDER</span></div>
+            <label class="field-label" for="capsuleRecipe">สูตรวัสดุปลูกต้นทาง</label><select id="capsuleRecipe"></select>
+            <div class="inline-fields"><div><label class="field-label" for="capsuleShape">ชนิดแคปซูล</label><select id="capsuleShape"><option value="sphere">ทรงกลม 2 ซีก</option><option value="pellet">เม็ดอัดทรงเตี้ย</option></select></div><div><label class="field-label" for="capsuleSize">ขนาดแม่พิมพ์</label><select id="capsuleSize"><option value="12">12 มม.</option><option value="18" selected>18 มม.</option><option value="24">24 มม.</option></select></div></div>
+            <div class="inline-fields"><div><label class="field-label" for="capsuleSeed">เมล็ดพันธุ์ต่อแคปซูล</label><input id="capsuleSeed" type="number" min="1" max="4" value="1"></div><div><label class="field-label" for="capsuleQuantity">จำนวนผลิต (จำลอง)</label><input id="capsuleQuantity" type="number" min="1" max="100" value="10"></div></div>
+            <label class="field-label" for="capsuleNote">หมายเหตุสูตรยึดเกาะ / ความชื้น</label><input id="capsuleNote" placeholder="เช่น ทดลองใช้วัสดุชื้นเล็กน้อย ไม่อัดแน่นเกินไป" maxlength="120">
+            <div class="button-row"><button class="primary" id="startCapsule">▶ ทดลองสร้างแคปซูล</button><button class="secondary" id="stopCapsule">■ หยุดจำลอง</button></div>
+            <p class="help">เครื่องจริงต้องตรวจแรงกด ขนาดเมล็ด และการแตกตัวเมื่อโดนน้ำ ไม่ควรกดแคปซูลจนเมล็ดเสียหาย</p>
+          </article>
+          <article class="panel">
+            <div class="panel-top"><h3>ภาพจำลองแม่พิมพ์และสถานะ</h3><span class="pill" id="capsuleStatusPill">IDLE</span></div>
+            <div class="capsule-machine"><div class="capsule-press"><div class="press-top"></div><div class="press-neck"></div><div class="capsule-circle">🌱</div><div class="press-base"></div></div><div class="capsule-details"><span>เครื่องกดแคปซูล 2 ซีก</span><strong id="capsuleShapeLabel">Ø 18 mm</strong><small>ปล่อยแคปซูลลงถาดรับ</small><div class="bar"><i id="capsuleBar" style="width:0%"></i></div><div id="capsuleProgressText">0% — พร้อมเริ่มจำลอง</div></div></div>
+            <h3 style="margin-top:20px">ประวัติ Batch แคปซูล</h3><div id="capsuleHistory" class="batch-list"></div>
+          </article>
+        </div>
+        <article class="panel research-note"><h3>ตัวแปรทางวิทยาศาสตร์ที่ควรเก็บ</h3><p>ชนิดเมล็ด • สูตรวัสดุปลูก • ขนาดแคปซูล • วิธีอัด • เวลาแตกตัวเมื่อได้รับน้ำ • อัตราการงอก โดยต้องเปรียบเทียบกับกลุ่มเมล็ดที่ไม่ได้ห่อแคปซูลด้วย</p></article>
+      </section>
+
+      <section class="page" id="page-greenhouse">
+        <div class="heading-row"><div><div class="section-overline">MODULE 04 / ADAPTIVE CLIMATE GREENHOUSE</div><h2>โรงเรือน 3 ห้องควบคุมอิสระ</h2><p>กำหนดอุณหภูมิ ความชื้น แสง และรดน้ำแยกชั้น เพื่อศึกษาพืชที่ต้องการภูมิอากาศแตกต่างกัน</p></div><span class="chip orange">ค่าเซนเซอร์จำลอง</span></div>
+        <div class="climate-info"><span>❄️ COOL ZONE</span><span>🌿 MILD ZONE</span><span>☀️ WARM ZONE</span><small>เป้าหมายเป็นค่าที่ผู้ใช้ตั้งได้ ไม่ใช่คำรับประกันว่าอุปกรณ์ทำได้จริง — ต้องออกแบบฉนวน ชุดทำความเย็น และวงจรป้องกันก่อนใช้งาน</small></div>
+        <div class="floor-grid" id="floorCards"></div>
+        <article class="panel"><h3>หลักการควบคุมอุณหภูมิ</h3><p>ระบบจริงควรให้ ESP32 เปรียบเทียบค่าจากเซนเซอร์กับอุณหภูมิเป้าหมาย และควบคุมพัดลม/ระบบทำความเย็นหรือทำความร้อนแบบมี <b>hysteresis</b> พร้อมการจำกัดเวลาทำงานของปั๊มและการตัดระบบเมื่อเกิดข้อผิดพลาด</p></article>
+      </section>
+
+      <section class="page" id="page-experiments">
+        <div class="heading-row"><div><div class="section-overline">BIOGLOW / EXPERIMENT NOTEBOOK</div><h2>วางแผนและบันทึกผลการทดลอง</h2><p>เชื่อมข้อมูลสูตรดิน × รูปแบบเมล็ด × ห้องภูมิอากาศ เพื่อพิสูจน์การงอกและการอยู่รอดของพืชเป้าหมาย</p></div><button class="secondary" id="loadSampleExperiments">เติมตัวอย่างเพื่อชมกราฟ</button></div>
+        <div class="experiment-banner"><strong>หลักการทดลองที่แนะนำ</strong><span>เปลี่ยนตัวแปรทีละกลุ่ม มีชุดควบคุม และทำซ้ำหลายชุด — อย่าเปรียบเทียบสูตรดินและอุณหภูมิที่เปลี่ยนพร้อมกันแล้วสรุปสาเหตุโดยตรง</span></div>
+        <div class="two-col narrow-left">
+          <article class="panel"><h3>สร้างระเบียนการทดลองใหม่</h3>
+            <form id="experimentForm">
+              <label class="field-label" for="experimentPlant">ชื่อพืชเป้าหมาย</label><input id="experimentPlant" required maxlength="80" placeholder="เช่น ผักสลัด หรือพืชเป้าหมายอนุรักษ์">
+              <label class="field-label" for="experimentQuestion">สมมติฐาน / คำถามวิจัย</label><input id="experimentQuestion" maxlength="160" placeholder="เช่น Biochar ส่งผลต่อการงอกหรือไม่?">
+              <div class="inline-fields"><div><label class="field-label" for="experimentRecipe">สูตรวัสดุปลูก</label><select id="experimentRecipe"></select></div><div><label class="field-label" for="experimentCapsule">รูปแบบเมล็ด</label><select id="experimentCapsule"><option value="none">เมล็ดธรรมดา (กลุ่มควบคุม)</option><option value="sphere">แคปซูลทรงกลม</option><option value="pellet">แคปซูลทรงเตี้ย</option></select></div></div>
+              <div class="inline-fields"><div><label class="field-label" for="experimentFloor">ห้องทดลอง</label><select id="experimentFloor"><option value="1">ชั้น 1 — Cool</option><option value="2">ชั้น 2 — Mild</option><option value="3">ชั้น 3 — Warm</option></select></div><div><label class="field-label" for="experimentDate">วันที่เริ่มทดลอง</label><input type="date" id="experimentDate" required></div></div>
+              <div class="inline-fields"><div><label class="field-label" for="experimentSeedCount">เมล็ดทั้งหมด (เมล็ด)</label><input type="number" min="1" max="10000" id="experimentSeedCount" required value="20"></div><div><label class="field-label" for="experimentGerminated">จำนวนที่งอกแล้ว (เมล็ด)</label><input type="number" min="0" max="10000" id="experimentGerminated" required value="0"></div></div>
+              <div class="inline-fields"><div><label class="field-label" for="experimentHeight">ความสูงเฉลี่ย (ซม.)</label><input type="number" step="0.1" min="0" max="300" id="experimentHeight" value="0"></div><div><label class="field-label" for="experimentWater">น้ำที่ใช้ (มล.)</label><input type="number" min="0" max="100000" id="experimentWater" value="0"></div></div>
+              <button class="primary full" type="submit">+ บันทึกผลทดลอง (เฉพาะในเบราว์เซอร์)</button>
+            </form>
+          </article>
+          <article class="panel"><div class="panel-top"><h3>เปรียบเทียบอัตราการงอก</h3><span class="pill">GERMINATION RATE</span></div><div id="experimentBars" class="result-bars"></div><p class="help">กราฟแสดงข้อมูลที่ป้อนจริงในหน้าเว็บ หรือข้อมูลตัวอย่างที่เลือกเติม ไม่มีการเชื่อมกับเซนเซอร์</p><div class="divider-soft"></div><div class="metrics-duo"><div><span>ชุดทดลองที่บันทึก</span><strong id="recordCount">0</strong></div><div><span>ชนิดพืชที่ศึกษา</span><strong id="speciesCount">0</strong></div></div></article>
+        </div>
+        <article class="panel"><div class="panel-top"><h3>ตารางผลการทดลอง</h3><span class="pill">EXPORT-READY STRUCTURE</span></div><div class="table-scroll"><table class="data-table"><thead><tr><th>วันที่ / รหัส</th><th>พืช</th><th>สูตรดิน</th><th>แคปซูล</th><th>ห้อง</th><th>การงอก</th><th>ความสูง</th><th></th></tr></thead><tbody id="experimentsTable"></tbody></table></div></article>
+      </section>
+      <section class="page" id="page-insights">
+        <div class="heading-row"><div><div class="section-overline">MODULE 05 / DATA LEARNING</div><h2>วิเคราะห์ผลเพื่อออกแบบการทดลองต่อไป</h2><p>เปรียบเทียบอัตราการงอกกับข้อมูลที่ทีมเก็บ โดยแสดงเหตุผล ไม่สรุปความเป็นเหตุและผลเกินกว่าหลักฐาน</p></div><span class="chip green">RULE-BASED ANALYSIS / NOT TRAINED AI</span></div>
+        <div class="two-col"><article class="panel"><h3>ข้อค้นพบจากข้อมูลที่บันทึก</h3><div id="insightContent" class="insight-content"></div></article><article class="panel"><h3>การพัฒนาเป็น AI Learning จริง</h3><div class="learning-roadmap"><div><span>1</span> จัดเก็บข้อมูลทดลองและกลุ่มควบคุม</div><div><span>2</span> ตรวจคุณภาพข้อมูลและปัจจัยแทรกซ้อน</div><div><span>3</span> สร้างกฎพื้นฐานและเปรียบเทียบกับผลจริง</div><div><span>4</span> จึงทดลองโมเดลทำนายเมื่อมีข้อมูลมากพอ</div></div></article></div>
+        <article class="panel"><h3>ชุดข้อมูลที่แนะนำสำหรับ FLL BIOGLOW</h3><div class="schema-grid"><div><b>Plant Species</b><span>พืชเป้าหมายและที่มาของข้อมูลอนุรักษ์</span></div><div><b>Soil Formula</b><span>สูตรและน้ำหนักส่วนผสมที่ชั่งได้จริง</span></div><div><b>Capsule Batch</b><span>ขนาด วัสดุ ยึดเกาะ และจำนวนเมล็ด</span></div><div><b>Climate Profile</b><span>อุณหภูมิ ความชื้น แสง น้ำต่อห้อง</span></div><div><b>Growth Result</b><span>อัตรางอก ความสูง อัตรารอด และวันทดลอง</span></div><div><b>Feedback / Iteration</b><span>คำแนะนำผู้เชี่ยวชาญและเวอร์ชันปรับปรุง</span></div></div></article>
+      </section>
+
+      <section class="page" id="page-schedule">
+        <div class="heading-row"><div><h2>ตั้งเวลาทำงาน</h2><p>สร้างตารางคำสั่งล่วงหน้า เช่น รดน้ำแต่ละชั้น หรือเริ่มผสมดิน</p></div><span class="chip orange">จำลองในเบราว์เซอร์</span></div>
+        <div class="two-col narrow-left"><article class="panel"><h3>เพิ่มตารางเวลา</h3>
+          <label class="field-label" for="scheduleAction">งานที่ต้องการ</label><select id="scheduleAction"><option value="water">รดน้ำโรงเรือน</option><option value="mix">ผสมดินตามสูตร</option></select>
+          <label class="field-label" for="scheduleTarget">ชั้น / สูตร</label><select id="scheduleTarget"></select>
+          <label class="field-label" for="scheduleTime">เวลา (Asia/Bangkok)</label><input id="scheduleTime" type="time" value="08:00">
+          <label class="field-label" for="scheduleRepeat">รูปแบบ</label><select id="scheduleRepeat"><option value="daily">ทุกวัน</option><option value="once">วันเดียว (เลือกวันที่)</option></select>
+          <div id="scheduleDateWrap" hidden><label class="field-label" for="scheduleDate">วันที่</label><input type="date" id="scheduleDate"></div>
+          <button class="primary full" id="addSchedule">+ บันทึกตารางเวลา</button><p class="help">ในระบบจริงต้องบันทึกตารางที่ Backend หรือ ESP32 ไม่ใช่พึ่งแท็บเว็บที่เปิดอยู่</p>
+        </article><article class="panel"><h3>ตารางเวลาที่บันทึก</h3><div id="scheduleList"></div></article></div>
+      </section>
+
+      <section class="page" id="page-developer">
+        <div class="heading-row"><div><h2>ข้อมูลเชื่อมต่อ Google Sheets & ESP32</h2><p>แผนโครงสร้างข้อมูลสำหรับทำเว็บให้ทำงานจริงผ่าน Google Apps Script และ Device Gateway</p></div><span class="chip orange">ยังไม่มีการเชื่อมต่อจริง</span></div>
+        <div class="two-col"><article class="panel"><h3>คำสั่งล่าสุดในรูป JSON</h3><p>ทุกครั้งที่กดปุ่ม โปรแกรมจะสร้าง payload ตัวอย่างนี้เพื่อใช้เขียน Backend ต่อ</p><pre id="payloadView">ยังไม่มีคำสั่ง</pre><button class="secondary" id="copyPayload">คัดลอก JSON</button></article><article class="panel"><h3>โครงสร้าง Topic ที่แนะนำ</h3><pre>biogenesis/x3/soil/command
+biogenesis/x3/soil/status
+biogenesis/x3/greenhouse/1/command
+biogenesis/x3/greenhouse/1/telemetry
+biogenesis/x3/greenhouse/2/...
+biogenesis/x3/greenhouse/3/...</pre><p class="help">อย่าใส่รหัสผ่าน MQTT หรือ API Secret ในไฟล์หน้าเว็บสาธารณะ ต้องใช้ Auth, Backend และสิทธิ์แยกแต่ละอุปกรณ์</p></article></div>
+        <article class="panel"><div class="panel-top"><h3>Google Sheets Data Model (แนะนำ)</h3><span class="pill">PLANNED / NOT CONNECTED</span></div><div class="schema-grid">
+          <div><b>Recipes</b><span>recipe_id, name, material1_g, material2_g, material3_g, material4_g</span></div>
+          <div><b>CapsuleBatches</b><span>batch_id, recipe_id, shape, diameter_mm, seeds_per_capsule, status</span></div>
+          <div><b>Chambers</b><span>chamber_id, target_temp_c, target_rh, target_light_h, mode</span></div>
+          <div><b>Telemetry</b><span>timestamp, chamber_id, temp_c, rh_pct, soil_pct, water_ml, power_wh</span></div>
+          <div><b>Experiments</b><span>experiment_id, species, recipe_id, capsule, chamber, seeds, germinated, height_cm</span></div>
+          <div><b>Commands / Schedules</b><span>command_id, device, action, parameters_json, time, status</span></div>
+        </div><p class="help">ชื่อชีตเป็นข้อเสนอสำหรับรุ่นใหม่ ต้องปรับ Backend เดิมให้ตรง schema ก่อนใช้งานจริง</p></article>
+      </section>
+    </div>
+  </main>
+</div>
+<dialog id="recipeDialog"><form method="dialog" id="recipeForm"><div class="modal-title"><h3>เพิ่ม / แก้ไขสูตรผสมดิน</h3><button class="close" type="button" id="closeRecipe" aria-label="ปิด">×</button></div><input type="hidden" id="recipeEditId"><label class="field-label" for="recipeName">ชื่อสูตร</label><input required maxlength="48" id="recipeName" placeholder="เช่น สูตรผักสลัด"><div class="four-fields"><label>ช่อง 1 (g)<input type="number" required id="g1" min="0" max="100000" value="400"></label><label>ช่อง 2 (g)<input type="number" required id="g2" min="0" max="100000" value="250"></label><label>ช่อง 3 (g)<input type="number" required id="g3" min="0" max="100000" value="200"></label><label>ช่อง 4 (g)<input type="number" required id="g4" min="0" max="100000" value="150"></label></div><div class="button-row"><button class="secondary" type="button" id="cancelRecipe">ยกเลิก</button><button class="primary" id="saveRecipe" type="submit">บันทึกสูตร</button></div></form></dialog>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="app.js"></script>
+</body>
+</html>
